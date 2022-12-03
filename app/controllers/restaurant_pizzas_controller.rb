@@ -1,5 +1,5 @@
 class RestaurantPizzasController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+  # rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
   def create
     res =
@@ -12,9 +12,9 @@ class RestaurantPizzasController < ApplicationController
     render json: res, status: :created
   end
 
-  private
+  # private
 
-  def render_not_found_response
-    render json: { error: "Author not found" }, status: :not_found
-  end
+  # def render_not_found_response
+  #   render json: { error: "Author not found" }, status: :not_found
+  # end
 end
