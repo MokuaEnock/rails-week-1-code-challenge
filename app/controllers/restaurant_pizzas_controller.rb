@@ -6,6 +6,11 @@ class RestaurantPizzasController < ApplicationController
     render json: res, status: :created
   end
 
+  def index
+    res = RestaurantPizza.all
+    render json: res, status: :ok
+  end
+
   private
 
   def render_not_found_response
