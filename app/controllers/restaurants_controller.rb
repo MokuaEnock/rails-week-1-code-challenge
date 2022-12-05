@@ -24,6 +24,12 @@ class RestaurantsController < ApplicationController
     render json: res, status: :ok
   end
 
+  def destroy
+    res = Restaurant.find(params[:id])
+    res.destroy
+    render json: no_content
+  end
+
   private
 
   def restaurant_params
