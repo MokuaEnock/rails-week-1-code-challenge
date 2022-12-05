@@ -13,6 +13,13 @@ class RestaurantsController < ApplicationController
     render json: restaurant, status: :ok
   end
 
+  def create
+    res = Restaurant.create!(restaurant_params)
+    render json: res, status: :created
+  end
+
+  def 
+
   private
 
   def restaurant_params
