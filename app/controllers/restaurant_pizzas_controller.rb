@@ -1,5 +1,6 @@
 class RestaurantPizzasController < ApplicationController
-  # rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+  rescue_from ActiveRecord::RecordInvalid,
+              with: :render_unprocessable_entity_response
 
   def create
     res = RestaurantPizza.create!(res_params)
@@ -13,7 +14,14 @@ class RestaurantPizzasController < ApplicationController
 
   private
 
-  def render_not_found_response
-    render json: { error: "Author not found" }, status: :not_found
+  def restaurant_pizza_params
+    params.permit(:price, :restaurant_id, :pizza_id)
+  end
+
+  def render_unprocessable_entity_response(invalid)
+    render json: {
+             error: invalid.record.errors.full_messages
+           },
+           status: :unprocessable_entity
   end
 end
