@@ -18,6 +18,12 @@ class PizzasController < ApplicationController
     render json: pizza, status: :created
   end
 
+  def destroy
+    pizza = Pizza.find(params[:id])
+    pizza.destroy
+    head :no_content
+  end
+
   private
 
   def pizza_params
