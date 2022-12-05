@@ -18,7 +18,11 @@ class RestaurantsController < ApplicationController
     render json: res, status: :created
   end
 
-  def 
+  def update
+    res = Restaurant.find(params[:id])
+    res.update!(restaurant_params)
+    render json: res, status: :ok
+  end
 
   private
 
