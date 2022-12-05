@@ -11,7 +11,14 @@ class PizzasController < ApplicationController
     render json: pizza
   end
 
+  def create
+  end
+
   private
+
+  def pizza_params
+    params.permit(:name, :ingredients)
+  end
 
   def render_not_found_response
     render json: { error: "Pizza not found" }, status: :not_found
